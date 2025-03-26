@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BankingAppClassLibrary
 {
-    internal class LoginEventType
+    public enum LoginEventType
     {
+        None,
+        Login,
+        Logout
     }
 }

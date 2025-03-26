@@ -47,7 +47,7 @@ This repository contains the source code developed for our **Banking Application
 
 1. **Clone the Repository:**
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/Eddie000321/BankingSolution.git>
    ```
 
 2. **Open the Solution:**

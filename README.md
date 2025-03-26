@@ -1,126 +1,118 @@
-💳 BankingApp Solution
+# 💳 BankingApp Solution
 
-This repository contains the source code for our team project implementing a Banking Application in C#. Our solution comprises two main projects:
+This repository contains the source code developed for our **Banking Application** project, demonstrating proficiency in C#, object-oriented programming, and collaborative software development.
 
-📚 BankingAppClassLibrary: Handles core business logic including account management, transactions, logging, and event handling.
+## 📂 Project Overview
 
-🚀 BankingApp: A console application project for integration testing, later extendable into a GUI Application.
+- 📚 **BankingAppClassLibrary**: Core business logic covering account management, transaction handling, logging, and event processing.
+- 🚀 **BankingApp**: Console application used for integration testing, designed for future expansion into a GUI application.
 
-📂 Project Structure
+---
 
-BankingAppSolution/
-├── 📚 BankingAppClassLibrary/
-│   ├── 📄 Account.cs                   (Student 5)
-│   ├── 📄 AccountException.cs          (Student 3)
-│   ├── 📄 AccountExceptionType.cs      (Student 5)
-│   ├── 📄 Bank.cs                      (Student 1)
-│   ├── 📄 Delegates.cs                 (Student 2)
-│   ├── 📄 DayTime.cs                   (Student 4)
-│   ├── 📄 Logger.cs                    (Student 5)
-│   ├── 📄 LoginEventType.cs            (Student 1)
-│   ├── 📄 LoginEventArgs.cs            (Student 1)
-│   ├── 📄 Person.cs                    (Student 1)
-│   ├── 📄 Transaction.cs               (Student 2)
-│   ├── 📄 TransactionEventArgs.cs      (Student 4)
-│   ├── 📄 Util.cs                      (Student 3)
-│   ├── 📄 VisaAccount.cs               (Student 2)
-│   ├── 📄 SavingAccount.cs             (Student 3)
-│   └── 📄 CheckingAccount.cs           (Student 4)
-│
-└── 🚀 BankingApp/
-    └── 📄 Program.cs                   (Integration tests)
+## 🗂️ Project Structure
 
-⚙️ Getting Started
+### 📚 BankingAppClassLibrary
 
-✅ Prerequisites
+- 📄 **Account.cs** _(Student 5)_
+- 📄 **AccountException.cs** _(Student 3)_
+- 📄 **AccountExceptionType.cs** _(Student 5)_
+- 📄 **Bank.cs** _(Student 1)_
+- 📄 **Delegates.cs** _(Student 2)_
+- 📄 **DayTime.cs** _(Student 4)_
+- 📄 **Logger.cs** _(Student 5)_
+- 📄 **LoginEventType.cs** _(Student 1)_
+- 📄 **LoginEventArgs.cs** _(Student 1)_
+- 📄 **Person.cs** _(Student 1)_
+- 📄 **Transaction.cs** _(Student 2)_
+- 📄 **TransactionEventArgs.cs** _(Student 4)_
+- 📄 **Util.cs** _(Student 3)_
+- 📄 **VisaAccount.cs** _(Student 2)_
+- 📄 **SavingAccount.cs** _(Student 3)_
+- 📄 **CheckingAccount.cs** _(Student 4)_
 
-Visual Studio 2022 or later
+### 🚀 BankingApp
 
-.NET Core / .NET Framework (depending on your setup)
+- 📄 **Program.cs** _(Integration tests)_
 
-🛠️ Installation & Setup
+---
 
-Clone the repository:
+## ⚙️ Getting Started
 
-git clone <repository-url>
+### ✅ Prerequisites
 
-Open Solution:
+- **Visual Studio 2022 or later**
+- **.NET Core / .NET Framework**
 
-Open BankingAppSolution.sln in Visual Studio.
+### 🛠️ Installation & Setup
 
-Build the Solution:
+1. **Clone the Repository:**
+   ```bash
+   git clone <repository-url>
+   ```
 
-Use Ctrl+Shift+B to build all projects.
+2. **Open the Solution:**
+   - Open `BankingAppSolution.sln` in Visual Studio.
 
-Run the Application:
+3. **Build & Run:**
+   - Press `Ctrl+Shift+B` to build.
+   - Set **BankingApp** as the startup project and press `F5` to run.
 
-Set BankingApp as the startup project.
+---
 
-Press F5 to run integration tests.
+## 👩‍💻 Team Members & Responsibilities
 
-🧑‍💻 Team Members & Responsibilities
+| Team Member | Responsibilities |
+|-------------|------------------|
+| **Student 1** | `LoginEventType`, `LoginEventArgs`, `Person`, `Bank` |
+| **Student 2** | `Delegates`, `Transaction`, `VisaAccount` |
+| **Student 3** | `AccountException`, `Util`, `SavingAccount` |
+| **Student 4** | `TransactionEventArgs`, `DayTime`, `CheckingAccount` |
+| **Student 5** | `AccountExceptionType`, `Logger`, `Account` |
 
-Student
+---
 
-Responsibilities
+## 🌐 Collaboration & Workflow
 
-Student 1
+### 🌿 Branching & Code Reviews
+- Use feature branches for development tasks.
+- Submit Pull Requests for code reviews.
+- Merge approved features into the main branch.
 
-LoginEventType.cs, LoginEventArgs.cs, Person.cs, Bank.cs
+### ✨ Code Standards
+- Follow consistent coding styles.
+- Document clearly and thoroughly.
 
-Student 2
+### 📢 Communication
+- Regular team meetings for project synchronization and updates.
 
-Delegates.cs, Transaction.cs, VisaAccount.cs
+---
 
-Student 3
+## 🚧 Future Enhancements
 
-AccountException.cs, Util.cs, SavingAccount.cs
+- **🖥️ GUI Application:** 
+  - Develop a user-friendly interface using Windows Forms or WPF.
 
-Student 4
+- **✅ Comprehensive Unit Testing:** 
+  - Enhance code reliability and maintainability.
 
-TransactionEventArgs.cs, DayTime.cs, CheckingAccount.cs
+---
 
-Student 5
+## 📫 Contact
 
-AccountExceptionType.cs, Logger.cs, Account.cs
+For questions or feedback, please reach out:
 
-Each team member is responsible for maintaining their assigned components. Integration is managed collaboratively in the BankingApp project.
+- [💼 LinkedIn](#)
+- [📧 Email](#)
 
-🌐 Collaboration & Workflow
+---
 
-🌿 Branching Strategy
+## 📜 License
 
-Use feature branches for individual tasks.
+Specify your project license here.
 
-Create Pull Requests for code reviews.
+---
 
-Merge to main branch after approval.
+## 🙌 Acknowledgements
 
-✨ Code Standards
-
-Follow consistent coding styles.
-
-Clearly document interfaces and methods.
-
-📢 Communication
-
-Regular meetings to synchronize and update project status.
-
-🚧 Future Enhancements
-
-🖥️ GUI Extension:
-
-Develop a graphical user interface using Windows Forms or WPF.
-
-✅ Unit Testing:
-
-Add comprehensive unit tests to ensure code quality.
-
-📜 License
-
-
-
-🙌 Acknowledgements
-
-This project was developed as a team assignment for the Programming II course. Special thanks to our instructors for their guidance and support.
+This project was created for the **Programming II course** at Centennial College. We thank our instructors for their support and guidance.
 

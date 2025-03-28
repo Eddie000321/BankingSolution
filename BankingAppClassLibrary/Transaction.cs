@@ -8,7 +8,7 @@ namespace BankingAppClassLibrary
 {
     public struct Transaction
     {
-        // Properties with public getter and no setter
+        
         public string AccountNumber { get; }
         public decimal Amount { get; }
         public Person Originator { get; }
@@ -23,12 +23,25 @@ namespace BankingAppClassLibrary
             Time = Util.Now; // Initialized with Util.Now property
         }
 
-        // ToString override
         public override string ToString()
         {
-            string transactionType = Amount >= 0 ? "Deposit" : "Withdraw";
-            return $"{transactionType}: Account #{AccountNumber}, " +
-                   $"Name: {Originator.Name}, Amount: {Math.Abs(Amount):C}, Time: {Time}";
+            string transactionType;
+            if (Amount >= 0)
+            {
+                transactionType = "Deposit";
+            }
+            else
+            {
+                transactionType = "Withdraw";
+            }
+
+            string result = transactionType + ": Account #" + AccountNumber +
+                            ", Name: " + Originator.Name +
+                            ", Amount: " + Math.Abs(Amount).ToString("C") +
+                            ", Time: " + Time;
+
+            return result;
         }
+
     }
 }

@@ -9,12 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingAppGui", "BankingApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingAppClassLibrary", "BankingAppClassLibrary\BankingAppClassLibrary.csproj", "{4087E118-1BF6-4E71-9E60-D7B8E3FC871B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegates", "Delegates\Delegates.csproj", "{B962EFB7-A0D7-4267-8E0D-870E08B2A662}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transaction", "Transaction\Transaction.csproj", "{383B94A0-BFB5-4568-8F04-74D504D0D02C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisaAccount", "VisaAccount\VisaAccount.csproj", "{F6EF3258-3586-4782-BAED-9CCCAAF531A7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,20 +27,11 @@ Global
 		{4087E118-1BF6-4E71-9E60-D7B8E3FC871B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4087E118-1BF6-4E71-9E60-D7B8E3FC871B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4087E118-1BF6-4E71-9E60-D7B8E3FC871B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B962EFB7-A0D7-4267-8E0D-870E08B2A662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B962EFB7-A0D7-4267-8E0D-870E08B2A662}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B962EFB7-A0D7-4267-8E0D-870E08B2A662}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B962EFB7-A0D7-4267-8E0D-870E08B2A662}.Release|Any CPU.Build.0 = Release|Any CPU
-		{383B94A0-BFB5-4568-8F04-74D504D0D02C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{383B94A0-BFB5-4568-8F04-74D504D0D02C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{383B94A0-BFB5-4568-8F04-74D504D0D02C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{383B94A0-BFB5-4568-8F04-74D504D0D02C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6EF3258-3586-4782-BAED-9CCCAAF531A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6EF3258-3586-4782-BAED-9CCCAAF531A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6EF3258-3586-4782-BAED-9CCCAAF531A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6EF3258-3586-4782-BAED-9CCCAAF531A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {673F0AB4-7FDB-4A06-BCCB-655059E0AFF4}
 	EndGlobalSection
 EndGlobal

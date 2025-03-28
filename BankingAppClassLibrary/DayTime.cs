@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankingAppClassLibrary
 {
-    internal class DayTime
+    public class DayTime
     {
         private long minutes;
 

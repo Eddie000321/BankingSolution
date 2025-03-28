@@ -44,7 +44,7 @@ namespace BankingAppClassLibrary
 
         public override string ToString()
         {
-            return $"{Name} [{Sin}] {(IsAuthenticated ? \"authenticated\" : \"not authenticated\")}";
+            return $"{Name} [{Sin}] {(IsAuthenticated ? "authenticated" : "not authenticated")}";
         }
     }
 }

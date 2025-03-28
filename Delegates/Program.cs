@@ -12,6 +12,4 @@ namespace Delegates
     public delegate void LoginEventHandler(
         object sender,
         LoginEventArgs e);
-
-
 }

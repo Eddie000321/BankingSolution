@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace BankingAppClassLibrary
 {
-    internal class TransactionEventArgs
+    public class TransactionEventArgs : LoginEventArgs
     {
+        public decimal Amount { get; }
+
+        public TransactionEventArgs(string personName, decimal amount, bool success)
+            : base(personName, success, LoginEventType.None)
+        {
+            Amount = amount;
+        }
     }
+
+    // Delegate definitions
+    public delegate void TransactionEventHandler(object sender, TransactionEventArgs e);
+    public delegate void LoginEventHandler(object sender, LoginEventArgs e);
 }

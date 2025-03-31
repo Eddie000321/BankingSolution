@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace BankingAppClassLibrary
 {
-    internal class AccountExceptionType
+   public enum AccountExceptionType
     {
+     ACCOUNT_DOES_NOT_EXIST,
+     ACCOUNT_ALREADY_EXIST,
+     INSUFFICIENT_FUNDS,
+     NO_OVERDRAFT_FOR_THIS_ACCOUNT,
+     PASSWORD_INCORRECT,
+     USER_DOES_NOT_EXIST,
+     USER_ALREADY_EXIST,
+     USER_NOT_LOGGED_IN
     }
 }

@@ -10,7 +10,26 @@ namespace BankingAppClassLibrary
     {
         // fields
         private string password;
-        public event LoginEventHandler OnLogin; // Its delegates. 
+        public event LoginEventHandler OnLogin; // Its delegates.  
+        /*
+            public delegate void LoginEventHandler(object sender,LoginEventArgs e); -> Delegates.cs
+         */
+        /*
+         public class LoginEventArgs : EventArgs
+    {
+        public string PersonName { get; }
+        public bool Success { get; }
+        public DayTime Time { get; }
+        public LoginEventType EventType { get; }
+
+        public LoginEventArgs(string name, bool success, LoginEventType eventType)
+        {
+            PersonName = name;
+            Success = success;
+            EventType = eventType;
+            Time = Util.Now;
+        }
+    }   */
         // properties
         public string Sin { get; }
         public string Name { get; }
@@ -27,20 +46,20 @@ namespace BankingAppClassLibrary
 
         public void Login(string pwd)
         {
-            if (pwd != password)
+            if (pwd != password) // if pass is incorrect
             {
                 IsAuthenticated = false;
                 if (OnLogin != null)
                 {
-                    OnLogin(this, new LoginEventArgs(
+                    OnLogin(this, new LoginEventArgs( // this is the sender, and the second argument is the event args
                         Name,
                         false,
-                        LoginEventType.Login
+                        LoginEventType.Login  
                     ));
                 }
                 throw new AccountException(AccountExceptionType.PASSWORD_INCORRECT);
             }
-            else
+            else // else pass is correct
             {
                 IsAuthenticated = true;
                 if (OnLogin != null)
@@ -48,28 +67,24 @@ namespace BankingAppClassLibrary
                     OnLogin(this, new LoginEventArgs(
                         Name,
                         true,
-                        LoginEventType.Login
-                    ));
+                        LoginEventType.Login // -> send login event type to Login args
                 }
             }
         }
 
-        // (5) Logout method
         public void Logout()
         {
-            IsAuthenticated = false;
-            // 이벤트가 null이 아닐 때만 Invoke
+            IsAuthenticated = false; // set to false
             if (OnLogin != null)
             {
-                OnLogin(this, new LoginEventArgs(
+                OnLogin(this, new LoginEventArgs( // same as login but LognEventType is Logout
                     Name,
                     true,
                     LoginEventType.Logout
                 ));
             }
         }
-
-        // (6) ToString method
+        
         public override string ToString()
         {
             return $"{Name} [{Sin}] {(IsAuthenticated ? "authenticated" : "not authenticated")}";

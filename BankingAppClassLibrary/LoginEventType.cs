@@ -12,4 +12,6 @@ namespace BankingAppClassLibrary
         Login,
         Logout
     } // enum is value type defined by a set of named constants of the underlying integral numeric type.
+      // its a set of named constants.
+      // constants is a value that doesn't change.
 }

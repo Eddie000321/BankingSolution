@@ -19,7 +19,7 @@ namespace BankingAppClassLibrary
             PersonName = name;
             Success = success;
             EventType = eventType;
-            Time = Util.Now;
+            Time = Util.Now; // using Time
         }
     }
 }

@@ -12,16 +12,13 @@ namespace BankingAppClassLibrary
     {
         //Fields
         public static readonly Dictionary<string, Account> ACCOUNTS = new Dictionary<string, Account>(); // readonly means that the reference can't be changed,
-        // Dictionary <key, value> key=account Num is string, value is Account           // but the object itself can be modified.
+        // Dictionary <key, value> key=account Num is string, value is Account                           // but the object itself can be modified.
         public static readonly Dictionary<string, Person> USERS = new Dictionary<string, Person>();
         // Dictionary <key, value> key=sin is string, value is Person
 
         // Methods
         // Constructor
-        // Orignal was AddPerson. So i changed it to AddUser
-        // theres No AddPerson in the project.
-        // Person.cs is only handling user login and logout.
-        // and also Program.cs in Main methods
+        
         static Bank()
         {
             // Initialize users
@@ -90,9 +87,9 @@ namespace BankingAppClassLibrary
         {
             // 1) public static void PrintAccounts() 
             //This method prints all the accounts in the ACCOUNTS collection to the console.
-            foreach (Account acc in ACCOUNTS.Values)
+            foreach (Account account in ACCOUNTS.Values)
             {
-                Console.WriteLine(acc);
+                Console.WriteLine(account);
                 Console.WriteLine();
             }
         }
@@ -199,7 +196,7 @@ namespace BankingAppClassLibrary
         public static void AddUserToAccount(string number, string name)
         {
             // 9) public static void AddUserToAccount(string number, string name)
-            //    – Takes two strings (accNumber, userName) and:
+            // Takes two strings (accNumber, userName) and:
             //      a) Locates the account (GetAccount(number))
             //      b) Locates the person (GetUser(name))
             //      c) Calls account.AddUser(person)

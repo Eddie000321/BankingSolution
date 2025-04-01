@@ -67,7 +67,7 @@ namespace BankingAppClassLibrary
                     OnLogin(this, new LoginEventArgs(
                         Name,
                         true,
-                        LoginEventType.Login // -> send login event type to Login args
+                        LoginEventType.Login)); // -> send login event type to Login args
                 }
             }
         }

@@ -166,14 +166,13 @@ namespace BankingAppClassLibrary
             }
         }
 
-
-        // 9) public static void AddUserToAccount(string number, string name)
-        //    – Takes two strings (accNumber, userName) and:
-        //      a) Locates the account (GetAccount(number))
-        //      b) Locates the person (GetUser(name))
-        //      c) Calls account.AddUser(person)
         public static void AddUserToAccount(string number, string name)
         {
+            // 9) public static void AddUserToAccount(string number, string name)
+            //    – Takes two strings (accNumber, userName) and:
+            //      a) Locates the account (GetAccount(number))
+            //      b) Locates the person (GetUser(name))
+            //      c) Calls account.AddUser(person)
             Account acc = GetAccount(number); // call GetAccount to get the account
             Person user = GetUser(name); // call GetUser to get the user
             acc.AddUser(user); // add the user to the account

@@ -7,7 +7,7 @@ using BankingAppClassLibrary;
 
 namespace BankingAppClassLibrary
 {
-    public class SavingAccount : Account, ITransaction
+    public class SavingAccount : Account
     {
         // Class variables (static readonly)
         private static readonly decimal COST_PER_TRANSACTION = 0.5m;   // 1) per transaction cost

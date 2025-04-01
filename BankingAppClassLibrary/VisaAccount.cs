@@ -7,7 +7,7 @@ using BankingAppClassLibrary;
 
 namespace BankingAppClassLibrary
 {
-    public class VisaAccount : Account, ITransaction
+    public class VisaAccount : Account
     {
         private decimal creditLimit;
         private const decimal INTEREST_RATE = 0.1995m;

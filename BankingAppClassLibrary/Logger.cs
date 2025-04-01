@@ -41,7 +41,7 @@ namespace BankingAppClassLibrary
             }
         }
     }
-
+    /* what is this?
     public class LoginEventArgs : EventArgs
     {
         public string PersonName { get; }
@@ -70,4 +70,5 @@ namespace BankingAppClassLibrary
         }
     }
 }
-
+*/
+}

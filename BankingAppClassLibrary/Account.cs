@@ -21,7 +21,8 @@ namespace BankingAppClassLibrary
 
         public Account(string type, decimal balance)
         {
-            Number = type + LAST_NUMBER;
+            Number = $"{type}-{LAST_NUMBER}";
+            //Number = type + LAST_NUMBER; -> who made this? its done
             LAST_NUMBER++;
             Balance = balance;
             LowestBalance = balance;

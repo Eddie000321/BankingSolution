@@ -38,14 +38,14 @@ namespace BankingAppClassLibrary
             AddUser("Nicoletta", "2344-6789");
 
             //initialize the ACCOUNTS collection
-            AddAccount(new VisaAccount());              //VS-100000
-            AddAccount(new VisaAccount(150, -500));     //VS-100001
-            AddAccount(new SavingAccount(5000));        //SV-100002
-            AddAccount(new SavingAccount());            //SV-100003
-            AddAccount(new CheckingAccount(2000));      //CK-100004
-            AddAccount(new CheckingAccount(1500, true));//CK-100005
-            AddAccount(new VisaAccount(50, -550));      //VS-100006
-            AddAccount(new SavingAccount(1000));        //SV-100007 
+            AddAccount(new VisaAccount());              // VS-100000
+            AddAccount(new VisaAccount(150, -500));     // VS-100001
+            AddAccount(new SavingAccount(5000));        // SV-100002
+            AddAccount(new SavingAccount());            // SV-100003
+            AddAccount(new CheckingAccount(2000));      // CK-100004
+            AddAccount(new CheckingAccount(1500, true));// CK-100005
+            AddAccount(new VisaAccount(50, -550));      // VS-100006
+            AddAccount(new SavingAccount(1000));        // SV-100007
 
             //associate users with accounts
             string number = "VS-100000";
@@ -175,7 +175,7 @@ namespace BankingAppClassLibrary
             {
                 Person p = new Person(name, sin); // make a new person 
                 p.OnLogin += Logger.LoginHandler; // Person p connects to Logger.LoginHandler
-                USERS[sin] = p; // add the new person to USERS dictionary. key is sin, value is person
+                USERS.Add(sin, p); // add the new person to USERS dictionary. key is sin, value is person
             }
         }
 
@@ -192,7 +192,7 @@ namespace BankingAppClassLibrary
             else
             {
                 account.OnTransaction += Logger.TransactionHandler;
-                ACCOUNTS[account.Number] = account; // add to dictionary key is account.Number, value is account
+                ACCOUNTS.Add(account.Number, account); // add to dictionary key is account.Number, value is account
             }
         }
 
@@ -203,9 +203,9 @@ namespace BankingAppClassLibrary
             //      a) Locates the account (GetAccount(number))
             //      b) Locates the person (GetUser(name))
             //      c) Calls account.AddUser(person)
-            Account acc = GetAccount(number); // call GetAccount to get the account
+            Account account = GetAccount(number); // call GetAccount to get the account
             Person user = GetUser(name); // call GetUser to get the user
-            acc.AddUser(user); // add the user to the account
+            account.AddUser(user); // add the user to the account
         }
     }
 }

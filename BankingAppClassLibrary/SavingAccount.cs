@@ -25,9 +25,8 @@ namespace BankingAppClassLibrary
         // Calls base deposit logic, then OnTransactionOccur event
         public new void Deposit(decimal amount, Person person)
         {
-            // base class might have something like: protected void ProcessTransaction(amount, person)
-            // or a base.Deposit method – here we assume 'ProcessTransaction'
-            base.ProcessTransaction(amount, person);
+            // base class might have something like: protected void Deposit(amount, person)
+            base.Deposit(amount, person);
 
             // After deposit success, call OnTransactionOccur
             base.OnTransactionOccur(
@@ -76,9 +75,9 @@ namespace BankingAppClassLibrary
 
             // (d) Otherwise success
             // "calls the Deposit() method of the base class with negative of the amount"
-            // Here we assume the parent's logic is in 'ProcessTransaction(-amount, person)'
+            // Here we assume the parent's logic is in 'Deposit(-amount, person)'
             // then OnTransactionOccur with success = true
-            base.ProcessTransaction(-amount, person);
+            base.Deposit(-amount, person);
             base.OnTransactionOccur(
                 this,
                 new TransactionEventArgs(person.Name, -amount, true)

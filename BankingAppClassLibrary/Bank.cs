@@ -93,7 +93,6 @@ namespace BankingAppClassLibrary
             File.WriteAllText(filename, json);
         }
 
-
         public static Person GetUser(string name)
         {
             // 5) public static Person GetUser(string name)
@@ -113,52 +112,49 @@ namespace BankingAppClassLibrary
             throw new AccountException(AccountExceptionType.USER_DOES_NOT_EXIST); // AccountExectiopnType.cs
         }
 
-
-        // 6) public static Account GetAccount(string number)
-        //    Takes a string (account number), returns matching Account.
-        //      a) Checks if ACCOUNTS has key=number
-        //      b) If yes, return value
-        //      c) Else throw AccountException(ACCOUNT_DOES_NOT_EXIST)
         public static Account GetAccount(string number)
         {
-            if (!ACCOUNTS.ContainsKey(number))
-            {
-                throw new AccountException(AccountExceptionType.ACCOUNT_DOES_NOT_EXIST);
-            }
-            else
+            // 6) public static Account GetAccount(string number)
+            //    Takes a string (account number), returns matching Account.
+            //      a) Checks if ACCOUNTS has key=number
+            //      b) If yes, return value
+            //      c) Else throw AccountException(ACCOUNT_DOES_NOT_EXIST)
+            if (ACCOUNTS.ContainsKey(number))
             {
                 return ACCOUNTS[number];
             }
+            else
+            {
+                throw new AccountException(AccountExceptionType.ACCOUNT_DOES_NOT_EXIST);
+            }
         }
 
-
-        // 7) public static void AddUser(string name, string sin)
-        //    Takes two strings, does:
-        //      a) If sin is already a key in USERS, throw
-        //      b) Else create Person(name, sin)
-        //         i) Hook Person's OnLogin event to Logger.LoginHandler
-        //         ii) USERS[sin] = that new Person
         public static void AddUser(string name, string sin)
         {
+            // 7) public static void AddUser(string name, string sin)
+            //    Takes two strings, does:
+            //      a) If sin is already a key in USERS, throw
+            //      b) Else create Person(name, sin)
+            //         i) Hook Person's OnLogin event to Logger.LoginHandler
+            //         ii) USERS[sin] = that new Person
             if (USERS.ContainsKey(sin))
             {
                 throw new AccountException(AccountExceptionType.USER_ALREADY_EXIST);
             }
             else
             {
-                Person p = new Person(name, sin);
-                p.OnLogin += Logger.LoginHandler;
-                USERS[sin] = p;
+                Person p = new Person(name, sin); // make a new person 
+                p.OnLogin += Logger.LoginHandler; // Person p connects to Logger.LoginHandler
+                USERS[sin] = p; // add the new person to USERS dictionary. key is sin, value is person
             }
         }
 
-
-        // 8) public static void AddAccount(Account account)
-        //    – Takes an account object and:
-        //      a) OnTransaction += Logger.TransactionHandler
-        //      b) ACCOUNTS[account.Number] = account
         public static void AddAccount(Account account)
         {
+            // 8) public static void AddAccount(Account account)
+            // Takes an account object and:
+            // a) OnTransaction += Logger.TransactionHandler
+            // b) ACCOUNTS[account.Number] = account
             if (ACCOUNTS.ContainsKey(account.Number))
             {
                 throw new AccountException(AccountExceptionType.ACCOUNT_ALREADY_EXIST);
@@ -166,7 +162,7 @@ namespace BankingAppClassLibrary
             else
             {
                 account.OnTransaction += Logger.TransactionHandler;
-                ACCOUNTS[account.Number] = account;
+                ACCOUNTS[account.Number] = account; // add to dictionary key is account.Number, value is account
             }
         }
 
@@ -178,9 +174,9 @@ namespace BankingAppClassLibrary
         //      c) Calls account.AddUser(person)
         public static void AddUserToAccount(string number, string name)
         {
-            Account acc = GetAccount(number);
-            Person user = GetUser(name);
-            acc.AddUser(user);
+            Account acc = GetAccount(number); // call GetAccount to get the account
+            Person user = GetUser(name); // call GetUser to get the user
+            acc.AddUser(user); // add the user to the account
         }
     }
 }

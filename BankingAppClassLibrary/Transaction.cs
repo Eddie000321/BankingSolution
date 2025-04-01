@@ -8,11 +8,11 @@ namespace BankingAppClassLibrary
 {
     public struct Transaction
     {
-        
+
         public string AccountNumber { get; }
         public decimal Amount { get; }
         public Person Originator { get; }
-        public DateTime Time { get; }
+        public DayTime Time { get; } // Datetime Changed to DayTime
 
         // Constructor
         public Transaction(string accountNumber, decimal amount, Person person)

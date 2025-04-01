@@ -43,42 +43,28 @@ namespace BankingAppClassLibrary
             Name = name;
             Sin = sin;
             password = sin.Substring(0, 3); // first 3 digits of sin 0,1,2
-            IsAuthenticated = false; // bool default value is false
         }
 
-        public void Login(string pwd)
+        public void Login(string password)
         {
-            if (pwd != password) // if pass is incorrect
+            if (password != this.password) // if pass is incorrect
             {
                 IsAuthenticated = false;
-                if (OnLogin != null)
-                {
-                    OnLogin(this, new LoginEventArgs( // this is the sender, and the second argument is the event args
-                        Name,
-                        false,
-                        LoginEventType.Login  
-                    ));
-                }
+                OnLogin(this, new LoginEventArgs(Name, false,LoginEventType.Login));
                 throw new AccountException(AccountExceptionType.PASSWORD_INCORRECT);
             }
             else // else pass is correct
             {
                 IsAuthenticated = true;
-                if (OnLogin != null)
-                {
-                    OnLogin(this, new LoginEventArgs(
-                        Name,
-                        true,
-                        LoginEventType.Login)); // -> send login event type to Login args
-                }
+                OnLogin(this, new LoginEventArgs(Name, true, LoginEventType.Login)); // -> send login event type to Login args   
             }
         }
 
         public void Logout()
         {
-            IsAuthenticated = false; // set to false
             if (OnLogin != null)
             {
+                IsAuthenticated = false; // set to false
                 OnLogin(this, new LoginEventArgs( // same as login but LognEventType is Logout
                     Name,
                     true,

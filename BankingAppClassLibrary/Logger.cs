@@ -20,8 +20,9 @@ namespace BankingAppClassLibrary
 
         public static void TransactionHandler(object sender, TransactionEventArgs args)
         {
-            string logEntry = $"Person: {args.PersonName}, Amount: {args.Amount}, Operation: {args.Operation}, Success: {args.Success}";
-            transactionEvents.Add(logEntry);
+            string logEntry = $"Person: {args.PersonName}, Amount: {args.Amount}, Success: {args.Success}";
+            transactionEvents.Add(logEntry); // we know in Logger.cs TransactionHandler reqire Operation: {args.Operation}
+            // but in TransactionEventArgs.cs, there is no Operation property. so we decide to follow the TransactionEventArgs.cs
         }
 
         public static void DisplayLoginEvents()

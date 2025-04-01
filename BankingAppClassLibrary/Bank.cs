@@ -18,6 +18,10 @@ namespace BankingAppClassLibrary
 
         // Methods
         // Constructor
+        // Orignal was AddPerson. So i changed it to AddUser
+        // theres No AddPerson in the project.
+        // Person.cs is only handling user login and logout.
+        // and also Program.cs in Main methods
         static Bank()
         {
             // Initialize users
@@ -33,29 +37,55 @@ namespace BankingAppClassLibrary
             AddUser("Mayy", "1224-5678");
             AddUser("Nicoletta", "2344-6789");
 
-            // Initialize accounts
-            AddAccount(new VisaAccount());              // VS-100000
-            AddAccount(new VisaAccount(150, -500));     // VS-100001
-            AddAccount(new SavingAccount(5000));        // SV-100002
-            AddAccount(new SavingAccount());            // SV-100003
-            AddAccount(new CheckingAccount(2000));      // CK-100004
-            AddAccount(new CheckingAccount(1500, true));// CK-100005
-            AddAccount(new VisaAccount(50, -550));      // VS-100006
-            AddAccount(new SavingAccount(1000));        // SV-100007
+            //initialize the ACCOUNTS collection
+            AddAccount(new VisaAccount());              //VS-100000
+            AddAccount(new VisaAccount(150, -500));     //VS-100001
+            AddAccount(new SavingAccount(5000));        //SV-100002
+            AddAccount(new SavingAccount());            //SV-100003
+            AddAccount(new CheckingAccount(2000));      //CK-100004
+            AddAccount(new CheckingAccount(1500, true));//CK-100005
+            AddAccount(new VisaAccount(50, -550));      //VS-100006
+            AddAccount(new SavingAccount(1000));        //SV-100007 
 
-            // Associate users with accounts
-            AddUserToAccount("VS-100000", "Narendra");
-            AddUserToAccount("VS-100000", "Ilia");
-            AddUserToAccount("VS-100000", "Mehrdad");
+            //associate users with accounts
+            string number = "VS-100000";
+            AddUserToAccount(number, "Narendra");
+            AddUserToAccount(number, "Ilia");
+            AddUserToAccount(number, "Mehrdad");
 
-            AddUserToAccount("VS-100001", "Vinay");
-            AddUserToAccount("VS-100001", "Arben");
-            AddUserToAccount("VS-100001", "Patrick");
+            number = "VS-100001";
+            AddUserToAccount(number, "Vinay");
+            AddUserToAccount(number, "Arben");
+            AddUserToAccount(number, "Patrick");
 
-            AddUserToAccount("SV-100002", "Yin");
-            AddUserToAccount("SV-100002", "Hao");
+            number = "SV-100002";
+            AddUserToAccount(number, "Yin");
+            AddUserToAccount(number, "Hao");
+            AddUserToAccount(number, "Jake");
+
+            number = "SV-100003";
+            AddUserToAccount(number, "Mayy");
+            AddUserToAccount(number, "Nicoletta");
+
+            number = "CK-100004";
+            AddUserToAccount(number, "Mehrdad");
+            AddUserToAccount(number, "Arben");
+            AddUserToAccount(number, "Yin");
+
+            number = "CK-100005";
+            AddUserToAccount(number, "Jake");
+            AddUserToAccount(number, "Nicoletta");
+
+            number = "VS-100006";
+            AddUserToAccount(number, "Ilia");
+            AddUserToAccount(number, "Vinay");
+
+            number = "SV-100007";
+            AddUserToAccount(number, "Patrick");
+            AddUserToAccount(number, "Hao");
+
         }
-        
+
         public static void PrintAccounts()
         {
             // 1) public static void PrintAccounts() 

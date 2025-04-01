@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BankingAppClassLibrary;
 
 namespace BankingApp
@@ -13,26 +9,28 @@ namespace BankingApp
         {
             // This is Main method for the BankingApp project
             // Testing do not touch anything.
-            Person p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10;
-            p0 = Bank.GetUser("Narendra");
-            p1 = Bank.GetUser("Ilia");
-            p2 = Bank.GetUser("Mehrdad");
-            p3 = Bank.GetUser("Vinay");
-            p4 = Bank.GetUser("Arben");
-            p5 = Bank.GetUser("Patrick");
-            p6 = Bank.GetUser("Yin");
-            p7 = Bank.GetUser("Hao");
-            p8 = Bank.GetUser("Jake");
-            p9 = Bank.GetUser("Mayy");
-            p10 = Bank.GetUser("Nicoletta");
 
+            // Retrieve users
+            Person p0 = Bank.GetUser("Narendra");  //0
+            Person p1 = Bank.GetUser("Ilia");       //1
+            Person p2 = Bank.GetUser("Mehrdad");    //2
+            Person p3 = Bank.GetUser("Vinay");      //3
+            Person p4 = Bank.GetUser("Arben");      //4
+            Person p5 = Bank.GetUser("Patrick");    //5
+            Person p6 = Bank.GetUser("Yin");        //6
+            Person p7 = Bank.GetUser("Hao");        //7
+            Person p8 = Bank.GetUser("Jake");       //8
+            Person p9 = Bank.GetUser("Mayy");       //9
+            Person p10 = Bank.GetUser("Nicoletta"); //10
+
+            // Login
             p0.Login("123"); p1.Login("234");
             p2.Login("345"); p3.Login("456");
             p4.Login("567"); p5.Login("678");
             p6.Login("789"); p7.Login("890");
             p10.Login("234"); p8.Login("901");
 
-            //a visa account
+            // a visa account
             VisaAccount a = Bank.GetAccount("VS-100000") as VisaAccount;
             a.DoPayment(1500, p0);
             a.DoPurchase(200, p1);
@@ -49,7 +47,7 @@ namespace BankingApp
             a.DoPurchase(15, p5);
             Console.WriteLine(a);
 
-            //a saving account
+            // a saving account
             SavingAccount b = Bank.GetAccount("SV-100002") as SavingAccount;
             b.Withdraw(300, p6);
             b.Withdraw(32.90m, p6);
@@ -58,13 +56,13 @@ namespace BankingApp
             Console.WriteLine(b);
 
             b = Bank.GetAccount("SV-100003") as SavingAccount;
-            b.Deposit(300, p3);     //ok even though p3 is not a holder
+            b.Deposit(300, p3);     // ok even though p3 is not a holder
             b.Deposit(32.90m, p2);
             b.Deposit(50, p5);
             b.Withdraw(111.11m, p10);
             Console.WriteLine(b);
 
-            //a checking account
+            // a checking account
             CheckingAccount c = Bank.GetAccount("CK-100004") as CheckingAccount;
             c.Deposit(33.33m, p7);
             c.Deposit(40.44m, p7);
@@ -91,7 +89,7 @@ namespace BankingApp
             Console.WriteLine(a);
 
             b = Bank.GetAccount("SV-100007") as SavingAccount;
-            b.Deposit(300, p3);     //ok even though p3 is not a holder
+            b.Deposit(300, p3);     // ok even though p3 is not a holder
             b.Deposit(32.90m, p2);
             b.Deposit(50, p5);
             b.Withdraw(111.11m, p7);
@@ -109,76 +107,43 @@ namespace BankingApp
             Console.WriteLine($"\n\nSaving all accounts to {filename}");
             Bank.SaveAccounts(filename);
 
-            //The following will cause exception
+            // The following will cause exception
             Console.WriteLine("\n\nExceptions:");
-            //The following will cause exception
-            try
-            {
-                p8.Login("911");            //incorrect password
-            }
+            try { p8.Login("911"); } // incorrect password
             catch (AccountException e) { Console.WriteLine(e.Message); }
 
-            try
-            {
-                p3.Logout();
-                a.DoPurchase(12.5m, p3);     //exception user is not logged in
-            }
+            try { p3.Logout(); a.DoPurchase(12.5m, p3); } // not logged in
             catch (AccountException e) { Console.WriteLine(e.Message); }
 
-            try
-            {
-                a.DoPurchase(12.5m, p0);     //user is not associated with this account
-            }
+            try { a.DoPurchase(12.5m, p0); } // not associated
             catch (AccountException e) { Console.WriteLine(e.Message); }
 
-            try
-            {
-                a.DoPurchase(5825, p4);     //credit limit exceeded
-            }
-            catch (AccountException e) { Console.WriteLine(e.Message); }
-            try
-            {
-                c.Withdraw(1500, p6);       //no overdraft
-            }
+            try { a.DoPurchase(5825, p4); } // credit limit exceeded
             catch (AccountException e) { Console.WriteLine(e.Message); }
 
-            try
-            {
-                Bank.GetAccount("CK-100018"); //account does not exist
-            }
+            try { c.Withdraw(1500, p6); } // no overdraft
             catch (AccountException e) { Console.WriteLine(e.Message); }
 
-            try
-            {
-                Bank.GetUser("Trudeau");  //user does not exist
-            }
+            try { Bank.GetAccount("CK-100018"); } // account does not exist
             catch (AccountException e) { Console.WriteLine(e.Message); }
 
-            /* remove GetAllTransactions
-            //show all transactions
-            Console.WriteLine("\n\nAll transactions");
-            foreach (var transaction in Bank.AllTransactions())
-            {
-                Console.WriteLine(transaction);
-            }
-            //saving events to json file
-            */
+            try { Bank.GetUser("Trudeau"); } // user does not exist
+            catch (AccountException e) { Console.WriteLine(e.Message); }
 
-            foreach (var keyValuePair in Bank.ACCOUNTS)
+            // PrepareMonthlyReport for each account
+            foreach (var pair in Bank.ACCOUNTS)
             {
                 Console.Write("\n*******************");
-                Account account = keyValuePair.Value;
+                Account account = pair.Value;
                 Console.WriteLine("\nBefore PrepareMonthlyReport()");
                 Console.WriteLine(account);
-
                 Console.WriteLine("\nAfter PrepareMonthlyReport()");
-                account.PrepareMonthlyReport();   //all transactions are cleared, balance changes
+                account.PrepareMonthlyReport();
                 Console.WriteLine(account);
             }
 
             Logger.DisplayLoginEvents();
             Logger.DisplayTransactionEvents();
-
         }
     }
 }

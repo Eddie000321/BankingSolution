@@ -10,18 +10,19 @@ namespace BankingApp
             // This is Main method for the BankingApp project
             // Testing do not touch anything.
 
-            // Retrieve users
-            Person p0 = Bank.GetUser("Narendra");  //0
-            Person p1 = Bank.GetUser("Ilia");       //1
-            Person p2 = Bank.GetUser("Mehrdad");    //2
-            Person p3 = Bank.GetUser("Vinay");      //3
-            Person p4 = Bank.GetUser("Arben");      //4
-            Person p5 = Bank.GetUser("Patrick");    //5
-            Person p6 = Bank.GetUser("Yin");        //6
-            Person p7 = Bank.GetUser("Hao");        //7
-            Person p8 = Bank.GetUser("Jake");       //8
-            Person p9 = Bank.GetUser("Mayy");       //9
-            Person p10 = Bank.GetUser("Nicoletta"); //10
+            Person p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10;
+            p0 = Bank.GetUser("Narendra");
+            p1 = Bank.GetUser("Ilia");
+            p2 = Bank.GetUser("Mehrdad");
+            p3 = Bank.GetUser("Vinay");
+            p4 = Bank.GetUser("Arben");
+            p5 = Bank.GetUser("Patrick");
+            p6 = Bank.GetUser("Yin");
+            p7 = Bank.GetUser("Hao");
+            p8 = Bank.GetUser("Jake");
+            p9 = Bank.GetUser("Mayy");
+            p10 = Bank.GetUser("Nicoletta");
+
 
             // Login
             p0.Login("123"); p1.Login("234");

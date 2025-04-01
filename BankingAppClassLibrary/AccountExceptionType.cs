@@ -16,6 +16,7 @@ namespace BankingAppClassLibrary
      USER_DOES_NOT_EXIST,
      USER_ALREADY_EXIST,
      USER_NOT_LOGGED_IN,
-        NAME_NOT_ASSOCIATED_WITH_ACCOUNT // added for SavingAccount.cs
+     NAME_NOT_ASSOCIATED_WITH_ACCOUNT, // added for SavingAccount.cs
+     CREDIT_LIMIT_HAS_BEEN_EXCEEDED, // add missing part
     }
 }

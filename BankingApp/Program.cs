@@ -34,19 +34,19 @@ namespace BankingApp
 
             //a visa account
             VisaAccount a = Bank.GetAccount("VS-100000") as VisaAccount;
-            a.Pay(1500, p0);
-            a.Purchase(200, p1);
-            a.Purchase(25, p2);
-            a.Purchase(15, p0);
-            a.Purchase(39, p1);
-            a.Pay(400, p0);
+            a.DoPayment(1500, p0);
+            a.DoPurchase(200, p1);
+            a.DoPurchase(25, p2);
+            a.DoPurchase(15, p0);
+            a.DoPurchase(39, p1);
+            a.DoPayment(400, p0);
             Console.WriteLine(a);
 
             a = Bank.GetAccount("VS-100001") as VisaAccount;
-            a.Pay(500, p0);
-            a.Purchase(25, p3);
-            a.Purchase(20, p4);
-            a.Purchase(15, p5);
+            a.DoPayment(500, p0);
+            a.DoPurchase(25, p3);
+            a.DoPurchase(20, p4);
+            a.DoPurchase(15, p5);
             Console.WriteLine(a);
 
             //a saving account
@@ -84,10 +84,10 @@ namespace BankingApp
             Console.WriteLine(c);
 
             a = Bank.GetAccount("VS-100006") as VisaAccount;
-            a.Pay(700, p0);
-            a.Purchase(20, p3);
-            a.Purchase(10, p1);
-            a.Purchase(15, p1);
+            a.DoPayment(700, p0);
+            a.DoPurchase(20, p3);
+            a.DoPurchase(10, p1);
+            a.DoPurchase(15, p1);
             Console.WriteLine(a);
 
             b = Bank.GetAccount("SV-100007") as SavingAccount;
@@ -121,19 +121,19 @@ namespace BankingApp
             try
             {
                 p3.Logout();
-                a.Purchase(12.5m, p3);     //exception user is not logged in
+                a.DoPurchase(12.5m, p3);     //exception user is not logged in
             }
             catch (AccountException e) { Console.WriteLine(e.Message); }
 
             try
             {
-                a.Purchase(12.5m, p0);     //user is not associated with this account
+                a.DoPurchase(12.5m, p0);     //user is not associated with this account
             }
             catch (AccountException e) { Console.WriteLine(e.Message); }
 
             try
             {
-                a.Purchase(5825, p4);     //credit limit exceeded
+                a.DoPurchase(5825, p4);     //credit limit exceeded
             }
             catch (AccountException e) { Console.WriteLine(e.Message); }
             try
@@ -154,14 +154,15 @@ namespace BankingApp
             }
             catch (AccountException e) { Console.WriteLine(e.Message); }
 
+            /* remove GetAllTransactions
             //show all transactions
             Console.WriteLine("\n\nAll transactions");
-            foreach (var transaction in Bank.GetAllTransactions())
+            foreach (var transaction in Bank.AllTransactions())
             {
                 Console.WriteLine(transaction);
             }
             //saving events to json file
-
+            */
 
             foreach (var keyValuePair in Bank.ACCOUNTS)
             {

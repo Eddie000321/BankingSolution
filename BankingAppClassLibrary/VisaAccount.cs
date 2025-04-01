@@ -23,37 +23,43 @@ namespace BankingAppClassLibrary
         public void DoPayment(decimal amount, Person person)
         {
             Deposit(amount, person);
-            OnTransactionOccur(new TransactionEventArgs(
+            // ✅ FIXED: Pass correct sender and event args to base event handler
+            OnTransactionOccur(this, new TransactionEventArgs(
                 person.Name, amount, true));
         }
 
         // DoPurchase Method
         public void DoPurchase(decimal amount, Person person)
         {
-            if (!IsPersonAssociated(person))
+            // ✅ FIXED: Replaced non-existent IsPersonAssociated() with IsUser()
+            if (!IsUser(person))
             {
-                OnTransactionOccur(new TransactionEventArgs(
+                OnTransactionOccur(this, new TransactionEventArgs(
                     person.Name, -amount, false));
-                throw new AccountException("Person not associated with this account.");
+
+                // ✅ FIXED: Replaced hardcoded string with proper exception enum
+                throw new AccountException(AccountExceptionType.NAME_NOT_ASSOCIATED_WITH_ACCOUNT);
             }
 
-            if (!person.IsLoggedIn)
+            // ✅ FIXED: Replaced IsLoggedIn with correct IsAuthenticated
+            if (!person.IsAuthenticated)
             {
-                OnTransactionOccur(new TransactionEventArgs(
+                OnTransactionOccur(this, new TransactionEventArgs(
                     person.Name, -amount, false));
-                throw new AccountException("Person not logged in.");
+                throw new AccountException(AccountExceptionType.USER_NOT_LOGGED_IN);
             }
 
             if ((Balance + creditLimit) < amount)
             {
-                OnTransactionOccur(new TransactionEventArgs(
+                OnTransactionOccur(this, new TransactionEventArgs(
                     person.Name, -amount, false));
-                throw new AccountException("Purchase exceeds credit limit.");
+                throw new AccountException(AccountExceptionType.CREDIT_LIMIT_HAS_BEEN_EXCEEDED);
             }
 
-            OnTransactionOccur(new TransactionEventArgs(
-                person.Name, -amount, true));
+            // ✅ FIXED: Always call Deposit first, then fire success event
             Deposit(-amount, person); // Withdraw by depositing negative
+            OnTransactionOccur(this, new TransactionEventArgs(
+                person.Name, -amount, true));
         }
 
         // PrepareMonthlyReport Method
@@ -61,7 +67,9 @@ namespace BankingAppClassLibrary
         {
             decimal interest = (LowestBalance * INTEREST_RATE) / 12;
             Balance -= interest;
-            Transactions.Clear(); // Re-initialize
+
+            // ✅ FIXED: Field name is 'transactions', not 'Transactions'
+            transactions.Clear(); // Re-initialize
         }
     }
 }

@@ -1,0 +1,77 @@
+ Banking Application - Fixes and Modifications Documentation
+
+1. Account Number Format Correction
+
+Issue: Incorrect account number format was causing lookup errors (ACCOUNT_DOES_NOT_EXIST).
+
+Resolution:
+
+Number = $"{type}-{LAST_NUMBER}"; // Corrected format (e.g., "VS-100000")
+
+2. Method Name Standardization (AddPerson → AddUser)
+
+Issue: The method AddPerson() did not exist, causing compile errors.
+
+Resolution: Replaced all instances of AddPerson() with the correctly implemented method AddUser().
+
+3. Event Handler Registrations
+
+Logger Transaction Handler:
+
+account.OnTransaction += Logger.TransactionHandler;
+
+Logger Login Handler:
+
+person.OnLogin += Logger.LoginHandler;
+
+Purpose: Ensures proper logging of transaction and login events.
+
+4. Lookup Logic Correction in GetUser and GetAccount Methods
+
+Issue: Users were incorrectly accessed via keys (SIN) instead of names.
+
+Resolution: Implemented iteration over dictionary values for correct user retrieval:
+
+foreach (Person person in USERS.Values)
+{
+    if (person.Name == name)
+        return person;
+}
+
+5. VisaAccount Method Name Consistency
+
+Issue: Mismatched method naming between test and implementation.
+
+Resolution: Standardized method names to DoPayment() and DoPurchase() consistently across the application.
+
+6. Abstract Method Correction
+
+Issue: Incorrect abstract method (PrepareMonthlyStatement).
+
+Resolution: Renamed and correctly defined the abstract method to PrepareMonthlyReport().
+
+7. Proper User and Account Initialization
+
+Issue: Static constructor (Bank()) was not correctly associating users and accounts.
+
+Resolution: Verified and implemented correct user creation, account initialization, and associations with proper account numbers.
+
+8. JSON Serialization for Data Persistence
+
+Implementation: Used JsonSerializer correctly to save user and account data:
+
+string json = JsonSerializer.Serialize(USERS, new JsonSerializerOptions { WriteIndented = true });
+File.WriteAllText(filename, json);
+
+9. Transaction Struct and Exception Handling
+
+Implementation: Verified and implemented Transaction struct with necessary fields and properties.
+
+Defined and implemented custom exception handling via AccountException class.
+
+10. Testing and Verification
+
+Verified that all previous errors (TypeInitializationException, ACCOUNT_DOES_NOT_EXIST) are resolved.
+
+Conducted comprehensive tests of login, account transactions, and monthly reports to confirm stability and correctness.
+

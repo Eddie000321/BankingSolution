@@ -15,6 +15,7 @@ namespace BankingAppClassLibrary
      PASSWORD_INCORRECT,
      USER_DOES_NOT_EXIST,
      USER_ALREADY_EXIST,
-     USER_NOT_LOGGED_IN
+     USER_NOT_LOGGED_IN,
+        NAME_NOT_ASSOCIATED_WITH_ACCOUNT // added for SavingAccount.cs
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankingAppClassLibrary
 {
-    internal class Delegates
+    public class Delegates // change internal to public
     {
         public delegate void TransactionEventHandler(
        object sender,

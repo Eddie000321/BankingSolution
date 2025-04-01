@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BankingAppClassLibrary;
+using static BankingAppClassLibrary.Delegates;
 
 namespace BankingAppClassLibrary
 {

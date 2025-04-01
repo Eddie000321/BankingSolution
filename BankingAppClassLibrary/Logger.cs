@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankingAppClassLibrary;
 
 namespace BankingAppClassLibrary
 {
-    public static class logger
+    public static class Logger
     {
         private static List<string> loginEvents = new List<string>();
         private static List<string> transactionEvents = new List<string>();

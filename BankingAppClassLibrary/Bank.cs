@@ -11,9 +11,9 @@ namespace BankingAppClassLibrary
     public static class Bank
     {
         //Fields
-        public static readonly Dictionary<string, Account> ACCOUNTS = new(); // readonly means that the reference can't be changed,
+        public static readonly Dictionary<string, Account> ACCOUNTS = new Dictionary<string, Account>(); // readonly means that the reference can't be changed,
         // Dictionary <key, value> key=account Num is string, value is Account           // but the object itself can be modified.
-        public static readonly Dictionary<string, Person> USERS = new();
+        public static readonly Dictionary<string, Person> USERS = new Dictionary<string, Person>();
         // Dictionary <key, value> key=sin is string, value is Person
 
         // Methods

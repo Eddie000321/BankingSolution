@@ -37,8 +37,10 @@ namespace BankingAppClassLibrary
             OnTransactionOccur(this, new TransactionEventArgs(person.Name, amount, true));
         }
 
-        public override void PrepareMonthlyStatement()
+        public override void PrepareMonthlyReport()
         {
+            // +	PrepareMonthlyReport() 			: void
+            // public override void PrepareMonthlyReport( )
             Balance += (LowestBalance * INTEREST_RATE) / 12 - transactions.Count * COST_PER_TRANSACTION;
             transactions.Clear();
         }

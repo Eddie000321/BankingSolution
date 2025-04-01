@@ -3,20 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.IO;
 
 namespace BankingAppClassLibrary
 {
     public static class Bank
     {
-        public static readonly Dictionary<string, Account> ACCOUNTS = new();
+        //Fields
+        public static readonly Dictionary<string, Account> ACCOUNTS = new(); // readonly means that the reference can't be changed,
+        // Dictionary <key, value> key=account Num is string, value is Account           // but the object itself can be modified.
         public static readonly Dictionary<string, Person> USERS = new();
+        // Dictionary <key, value> key=sin is string, value is Person
 
+        // Methods
+        // Constructor
         static Bank()
         {
             // Initialize users
-            AddUser("Narendra", "1234-5678");
-            AddUser("Ilia", "2345-6789");
-            AddUser("Mehrdad", "3456-7890");
+            AddUser("Narendra", "1234-5678"); // Orignal was AddPerson. So i changed it to AddUser
+            AddUser("Ilia", "2345-6789"); // theres No AddPerson in the project.
+            AddUser("Mehrdad", "3456-7890"); // Person.cs is only handling user login and logout.
             AddUser("Vinay", "4567-8901");
             AddUser("Arben", "5678-9012");
             AddUser("Patrick", "6789-0123");
@@ -47,104 +54,134 @@ namespace BankingAppClassLibrary
 
             AddUserToAccount("SV-100002", "Yin");
             AddUserToAccount("SV-100002", "Hao");
-            AddUserToAccount("SV-100002", "Jake");
-
-            AddUserToAccount("SV-100003", "Mayy");
-            AddUserToAccount("SV-100003", "Nicoletta");
-
-            AddUserToAccount("CK-100004", "Mehrdad");
-            AddUserToAccount("CK-100004", "Arben");
-            AddUserToAccount("CK-100004", "Yin");
-
-            AddUserToAccount("CK-100005", "Jake");
-            AddUserToAccount("CK-100005", "Nicoletta");
-
-            AddUserToAccount("VS-100006", "Ilia");
-            AddUserToAccount("VS-100006", "Vinay");
-
-            AddUserToAccount("SV-100007", "Patrick");
-            AddUserToAccount("SV-100007", "Hao");
         }
-
-        public static void AddUser(string name, string sin)
-        {
-            if (USERS.ContainsKey(name))
-                throw new AccountException(AccountExceptionType.USER_ALREADY_EXIST);
-
-            Person p = new(name, sin);
-            p.OnLogin += Logger.LoginHandler;
-            USERS[name] = p;
-        }
-
-        public static void AddAccount(Account account)
-        {
-            account.OnTransaction += Logger.TransactionHandler;
-            ACCOUNTS[account.Number] = account;
-        }
-
-        public static void AddUserToAccount(string accountNumber, string userName)
-        {
-            if (!ACCOUNTS.ContainsKey(accountNumber))
-                throw new AccountException(AccountExceptionType.ACCOUNT_DOES_NOT_EXIST);
-
-            if (!USERS.ContainsKey(userName))
-                throw new AccountException(AccountExceptionType.USER_DOES_NOT_EXIST);
-
-            ACCOUNTS[accountNumber].AddUser(USERS[userName]);
-        }
-
-        public static Account GetAccount(string number)
-        {
-            if (ACCOUNTS.TryGetValue(number, out Account account))
-                return account;
-
-            throw new AccountException(AccountExceptionType.ACCOUNT_DOES_NOT_EXIST);
-        }
-
-        public static Person GetUser(string name)
-        {
-            if (USERS.TryGetValue(name, out Person user))
-                return user;
-
-            throw new AccountException(AccountExceptionType.USER_DOES_NOT_EXIST);
-        }
-
+        
         public static void PrintAccounts()
         {
-            foreach (var account in ACCOUNTS.Values)
+            // 1) public static void PrintAccounts() 
+            //This method prints all the accounts in the ACCOUNTS collection to the console.
+            foreach (Account acc in ACCOUNTS.Values)
             {
-                Console.WriteLine(account);
+                Console.WriteLine(acc);
                 Console.WriteLine();
             }
         }
 
         public static void PrintUsers()
         {
-            foreach (var user in USERS.Values)
+            // 2) public static void PrintUsers()
+            // This method prints all persons in the USERS collection to the console.
+            foreach (Person person in USERS.Values)
             {
-                Console.WriteLine(user);
+                Console.WriteLine($"{person.Name} [{person.Sin}] Authenticated: {person.IsAuthenticated}");
             }
         }
 
         public static void SaveAccounts(string filename)
         {
+            // 3) public static void SaveAccounts(string filename)
+            // This method serializes all ACCOUNTS to a JSON file.
             string json = JsonSerializer.Serialize(ACCOUNTS, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(filename, json);
         }
 
         public static void SaveUsers(string filename)
         {
+            // 4) public static void SaveUsers(string filename)
+            // This method serializes all USERS to a JSON file.
             string json = JsonSerializer.Serialize(USERS, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(filename, json);
         }
 
-        public static List<Transaction> GetAllTransactions()
-        {
-            List<Transaction> allTransactions = new();
-            foreach (var account in ACCOUNTS.Values)
-                allTransactions.AddRange(account.transactions);
 
-            return allTransactions;
+        public static Person GetUser(string name)
+        {
+            // 5) public static Person GetUser(string name)
+            //    Takes a string (person's name), returns matching Person object.
+            //      a) Check if there's a Person with that 'Name' in USERS
+            //      b) If found, return it
+            //      c) Else throw AccountException(USER_DOES_NOT_EXIST)
+            //    This method does not display anything on screen.
+            // Because key=sin in USERS, we loop Values to compare .Name
+            foreach (Person person in USERS.Values) 
+            {
+                if (person.Name == name)
+                {
+                    return person;
+                }
+            }
+            throw new AccountException(AccountExceptionType.USER_DOES_NOT_EXIST); // AccountExectiopnType.cs
+        }
+
+
+        // 6) public static Account GetAccount(string number)
+        //    Takes a string (account number), returns matching Account.
+        //      a) Checks if ACCOUNTS has key=number
+        //      b) If yes, return value
+        //      c) Else throw AccountException(ACCOUNT_DOES_NOT_EXIST)
+        public static Account GetAccount(string number)
+        {
+            if (!ACCOUNTS.ContainsKey(number))
+            {
+                throw new AccountException(AccountExceptionType.ACCOUNT_DOES_NOT_EXIST);
+            }
+            else
+            {
+                return ACCOUNTS[number];
+            }
+        }
+
+
+        // 7) public static void AddUser(string name, string sin)
+        //    Takes two strings, does:
+        //      a) If sin is already a key in USERS, throw
+        //      b) Else create Person(name, sin)
+        //         i) Hook Person's OnLogin event to Logger.LoginHandler
+        //         ii) USERS[sin] = that new Person
+        public static void AddUser(string name, string sin)
+        {
+            if (USERS.ContainsKey(sin))
+            {
+                throw new AccountException(AccountExceptionType.USER_ALREADY_EXIST);
+            }
+            else
+            {
+                Person p = new Person(name, sin);
+                p.OnLogin += Logger.LoginHandler;
+                USERS[sin] = p;
+            }
+        }
+
+
+        // 8) public static void AddAccount(Account account)
+        //    – Takes an account object and:
+        //      a) OnTransaction += Logger.TransactionHandler
+        //      b) ACCOUNTS[account.Number] = account
+        public static void AddAccount(Account account)
+        {
+            if (ACCOUNTS.ContainsKey(account.Number))
+            {
+                throw new AccountException(AccountExceptionType.ACCOUNT_ALREADY_EXIST);
+            }
+            else
+            {
+                account.OnTransaction += Logger.TransactionHandler;
+                ACCOUNTS[account.Number] = account;
+            }
+        }
+
+
+        // 9) public static void AddUserToAccount(string number, string name)
+        //    – Takes two strings (accNumber, userName) and:
+        //      a) Locates the account (GetAccount(number))
+        //      b) Locates the person (GetUser(name))
+        //      c) Calls account.AddUser(person)
+        public static void AddUserToAccount(string number, string name)
+        {
+            Account acc = GetAccount(number);
+            Person user = GetUser(name);
+            acc.AddUser(user);
         }
     }
 }
+    

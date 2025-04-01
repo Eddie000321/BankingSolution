@@ -58,7 +58,13 @@ namespace BankingAppClassLibrary
             OnTransaction?.Invoke(sender, e);
         }
 
-        public abstract void PrepareMonthlyStatement();
+        public abstract void PrepareMonthlyReport();
+
+        // +	«abstract» PrepareMonthlyStatement(): void
+
+        // 5.	public abstract void PrepareMonthlyReport( )– This abstract public method does not take any parameter nor does it return a value.
+        // Research how to declare an abstract method.
+
 
         public override string ToString()
         {
